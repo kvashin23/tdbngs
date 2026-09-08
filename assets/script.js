@@ -12,6 +12,24 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // Product / cert sliders with arrow controls
+  document.querySelectorAll('.product-slider-wrap').forEach(function (wrap) {
+    var track = wrap.querySelector('.product-slider');
+    var prev = wrap.querySelector('.slider-arrow.prev');
+    var next = wrap.querySelector('.slider-arrow.next');
+    if (!track) return;
+    function step() {
+      var card = track.querySelector('.product-card');
+      return card ? card.getBoundingClientRect().width + 1 : 260;
+    }
+    if (prev) prev.addEventListener('click', function () {
+      track.scrollBy({ left: -step(), behavior: 'smooth' });
+    });
+    if (next) next.addEventListener('click', function () {
+      track.scrollBy({ left: step(), behavior: 'smooth' });
+    });
+  });
+
   // Mobile nav
   var burger = document.querySelector('.burger');
   var nav = document.querySelector('.main-nav');
